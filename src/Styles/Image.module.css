@@ -1,0 +1,22 @@
+.main {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(#434141, gray);
+    padding: 20px 0;
+}
+
+.dragDiv{
+    height: fit-content;
+    position: absolute;
+    border: 1px solid grey
+}
+
+.dragInput{
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    font-size: 25px;
+}
