@@ -24,4 +24,13 @@
     resize: both;
     font-weight: 900;
     color: #fff;
+    outline: none;
 }
+
+.dragInput:focus{
+    outline: auto;
+}
+/* 
+.dragDiv:active{
+    outline: #434141;
+} */

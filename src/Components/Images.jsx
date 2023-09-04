@@ -4,21 +4,23 @@ import styles from "../Styles/Image.module.css";
 import Draggable from "react-draggable";
 
 const Images = () => {
-  const [image, setImage] = useState("");
-  const [inputVal, setInputVal] = useState("saaaaaaaaaaaaaaa");
-  const inputEl = useRef();
+  const [image, setImage] = useState(
+    "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+  );
+  const [inputVal, setInputVal] = useState("");
+  const [inputWidth, setInputWidth] = useState(inputVal.length || 0);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `https://api.unsplash.com/photos/random?orientation=landscape&client_id=jx4QHv5IzN5BPiGHxszR_Amu11Cx81ggIUG8q26_cc0`
+  //     )
+  //     .then((res) => setImage(res?.data?.urls?.full));
+  // }, []);
 
   useEffect(() => {
-    console.log(inputEl);
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.unsplash.com/photos/random?orientation=landscape&client_id=jx4QHv5IzN5BPiGHxszR_Amu11Cx81ggIUG8q26_cc0`
-      )
-      .then((res) => setImage(res?.data?.urls?.full));
-  }, []);
+    setInputWidth(inputVal.length * 15);
+  }, [inputVal]);
 
   return (
     <div className={styles.main}>
@@ -26,14 +28,16 @@ const Images = () => {
         className={styles.dragDiv}
         style={{ backgroundImage: `url(${image})`, backgroundSize: "cover" }}
       >
-        {/* <img src={image} alt="image" style={{ height: "100%" }} /> */}
         <Draggable bounds="parent">
           <input
             role="textbox"
             value={inputVal}
-            ref={inputEl}
             className={styles.dragInput}
-            onChange={(e) => setInputVal(e.target.value)}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setInputVal(e.target.value);
+            }}
+            style={{ width: `${inputWidth}px` }}
           />
         </Draggable>
       </div>
@@ -42,6 +46,3 @@ const Images = () => {
 };
 
 export default Images;
-
-//jx4QHv5IzN5BPiGHxszR_Amu11Cx81ggIUG8q26_cc0 --- Access Key
-//w7BJB9gni2MGwA3dZlE5H8pSmHsKBId8GKEQVd-U6F0 --- Secret key
