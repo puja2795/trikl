@@ -5,7 +5,7 @@ import Draggable from "react-draggable";
 
 const Images = () => {
   const [image, setImage] = useState("");
-  const [inputVal, setInputVal] = useState("");
+  const [inputVal, setInputVal] = useState("saaaaaaaaaaaaaaa");
   const inputEl = useRef();
 
   useEffect(() => {
@@ -22,17 +22,21 @@ const Images = () => {
 
   return (
     <div className={styles.main}>
-      <img src={image} alt="image" style={{ height: "100%" }} />
-      <Draggable>
-        <div className={styles.dragDiv}>
+      <div
+        className={styles.dragDiv}
+        style={{ backgroundImage: `url(${image})`, backgroundSize: "cover" }}
+      >
+        {/* <img src={image} alt="image" style={{ height: "100%" }} /> */}
+        <Draggable bounds="parent">
           <input
+            role="textbox"
             value={inputVal}
             ref={inputEl}
             className={styles.dragInput}
             onChange={(e) => setInputVal(e.target.value)}
           />
-        </div>
-      </Draggable>
+        </Draggable>
+      </div>
     </div>
   );
 };
